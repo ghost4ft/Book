@@ -8,6 +8,7 @@ const router = express.Router()
  *   post:
  *     summary: Register a new user
  *     tags: [Auth]
+ *     security: []  
  *     requestBody:
  *       required: true
  *       content:
@@ -17,10 +18,13 @@ const router = express.Router()
  *             properties:
  *               username:
  *                 type: string
+ *                 example: "john_doe"
  *               email:
  *                 type: string
+ *                 example: "john@example.com"
  *               password:
  *                 type: string
+ *                 example: "password123"
  *     responses:
  *       201:
  *         description: User registered successfully
@@ -34,6 +38,7 @@ router.post('/register', authController.register)
  *   post:
  *     summary: Login a user
  *     tags: [Auth]
+ *     security: [] 
  *     requestBody:
  *       required: true
  *       content:
@@ -43,8 +48,10 @@ router.post('/register', authController.register)
  *             properties:
  *               email:
  *                 type: string
+ *                 example: "john@example.com"
  *               password:
  *                 type: string
+ *                 example: "password123"
  *     responses:
  *       200:
  *         description: User logged in successfully
