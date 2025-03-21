@@ -24,21 +24,9 @@ This project is designed to manage a collection of books. It includes features f
     ```
 2. Open your browser and navigate to `http://localhost:3000`.
 
-## Contributing
-1. Fork the repository.
-2. Create a new branch:
-    ```bash
-    git checkout -b feature-branch
-    ```
-3. Make your changes and commit them:
-    ```bash
-    git commit -m "Description of changes"
-    ```
-4. Push to the branch:
-    ```bash
-    git push origin feature-branch
-    ```
-5. Create a pull request.
+## Swagger Documentation
+1. Ensure the development server is running.
+2. Open your browser and navigate to `http://localhost:3000/api-docs` to view the Swagger UI.
 
 ## License
 This project is licensed under the MIT License.
