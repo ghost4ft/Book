@@ -130,19 +130,12 @@ const updateBook = async (req, res, next) => {
 
     }
 }
-const userBook = async (req, res, next) => {
-    try {
-        const books = await Book.find({ user: req.user._id }).sort({ createdAt: -1 })
-        res.json(books)
-    } catch (error) {
-        next(error)
-    }
-}
+
 
 export default {
     newBook,
     showBooks,
     deleteBook,
     updateBook,
-    userBook
+    
 }

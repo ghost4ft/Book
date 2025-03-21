@@ -3,42 +3,6 @@ import bookController from '../controllers/bookController.js'
 import protectedRoute from '../middlewares/auth.js'
 
 const router = express.Router()
-
-/**
- * @swagger
- * /api/books:
- *   post:
- *     summary: Create a new book
- *     tags: [Books]
- *     security:
- *       - ApiKeyAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               title:
- *                 type: string
- *                 example: "Application Security"
- *               caption:
- *                 type: string
- *                 example: "Owasp Top 10"
- *               image:
- *                 type: string
- *                 example: "https://api.dicebear.com/7.x/avataaars/svg?seed=owasp"
- *               rating:
- *                 type: number
- *                 example: 2
- *     responses:
- *       201:
- *         description: Book created successfully
- *       400:
- *         description: Bad request
- */
-router.post('/', protectedRoute, bookController.newBook)
-
 /**
  * @swagger
  * /api/books:
@@ -85,29 +49,38 @@ router.get('/', protectedRoute, bookController.showBooks)
 
 /**
  * @swagger
- * /api/books/{id}:
- *   delete:
- *     summary: Delete a book by ID
+ * /api/books:
+ *   post:
+ *     summary: Create a new book
  *     tags: [Books]
  *     security:
  *       - ApiKeyAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: The book ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Application Security"
+ *               caption:
+ *                 type: string
+ *                 example: "Owasp Top 10"
+ *               image:
+ *                 type: string
+ *                 example: "https://api.dicebear.com/7.x/avataaars/svg?seed=owasp"
+ *               rating:
+ *                 type: number
+ *                 example: 2
  *     responses:
- *       200:
- *         description: Book deleted successfully
+ *       201:
+ *         description: Book created successfully
  *       400:
  *         description: Bad request
- *       401:
- *         description: Unauthorized
  */
-router.delete('/:id', protectedRoute, bookController.deleteBook)
-
+router.post('/', protectedRoute, bookController.newBook)
 /**
  * @swagger
  * /api/books/{id}:
@@ -148,37 +121,32 @@ router.delete('/:id', protectedRoute, bookController.deleteBook)
  */
 router.put('/:id', protectedRoute, bookController.updateBook)
 
+
 /**
  * @swagger
- * /api/books/user:
- *   put:
- *     summary: Update user's book
+ * /api/books/{id}:
+ *   delete:
+ *     summary: Delete a book by ID
  *     tags: [Books]
  *     security:
  *       - ApiKeyAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               title:
- *                 type: string
- *               caption:
- *                 type: string
- *               image:
- *                 type: string
- *               rating:
- *                 type: number
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The book ID
  *     responses:
  *       200:
- *         description: User's book updated successfully
+ *         description: Book deleted successfully
  *       400:
  *         description: Bad request
  *       401:
  *         description: Unauthorized
  */
-router.put('/user', protectedRoute, bookController.userBook)
+router.delete('/:id', protectedRoute, bookController.deleteBook)
+
+
 
 export default router
