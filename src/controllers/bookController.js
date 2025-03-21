@@ -40,8 +40,12 @@ const showBooks = async (req, res, next) => {
 
         const totalBooks = await Book.countDocuments()
         const totalPages = Math.ceil(totalBooks / limit)
+        if (totalBooks === 0)
+            return res.status(404).json({ message: 'No books found' })
         if (page > totalPages)
             return res.status(404).json({ message: 'Page not found' })
+
+
 
         res.send({
             books,
@@ -92,21 +96,21 @@ const updateBook = async (req, res, next) => {
 
 
         const { title, caption, rating, image } = req.body
-        
+
         if (!title || !caption || !rating || !image)
             return res.status(400).json({ message: 'All fields are required' })
-        if(typeof rating !== 'number' || rating < 1 || rating > 5)
+        if (typeof rating !== 'number' || rating < 1 || rating > 5)
             return res.status(400).json({ message: 'Rating must be a number between 1 and 5' })
-        if(title.length < 2 || title.length > 50)
+        if (title.length < 2 || title.length > 50)
             return res.status(400).json({ message: 'Title must be between 2 and 50 characters' })
 
-        
+
 
         let imageUrl = book.image
-        if(image !== book.image){
+        if (image !== book.image) {
             const uploadResponse = await cloudinary.uploader.upload(image)
             imageUrl = uploadResponse.secure_url
-            if(book.image && book.image.includes('cloudinary')){
+            if (book.image && book.image.includes('cloudinary')) {
                 try {
                     const publicId = book.image.split('/').pop().split('.')[0]
                     await cloudinary.uploader.destroy(publicId)
@@ -123,7 +127,7 @@ const updateBook = async (req, res, next) => {
         res.json({ message: 'Book updated successfully' })
     } catch (error) {
         next(error)
-        
+
     }
 }
 const userBook = async (req, res, next) => {

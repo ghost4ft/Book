@@ -2,6 +2,7 @@ import tokenService from "../services/tokenService.js"
 import User from "../models/userModel.js"
 import { isValidEmail } from "../services/emailValidator.js"
 
+
 const register = async (req, res, next) => {
     try {
         const { username, email, password } = req.body
@@ -46,6 +47,7 @@ const register = async (req, res, next) => {
     }
 
 }
+
 const login = async (req, res, next) => {
     try {
         const { email, password } = req.body
