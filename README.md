@@ -1,49 +1,44 @@
-# Book API Documentation
+# Book Project
 
-## All Registered Routes
+## Description
+This project is designed to manage a collection of books. It includes features for adding, updating, and deleting books, as well as searching for books by various criteria.
 
-### User Management
+## Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/Book.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd Book
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-#### Register User
+## Usage
+1. Start the development server:
+    ```bash
+    npm run server
+    ```
+2. Open your browser and navigate to `http://localhost:3000`.
 
-**Method:** `POST`\
-**Endpoint:** `/api/auth/register`\
-**Description:** Registers a new user.
+## Contributing
+1. Fork the repository.
+2. Create a new branch:
+    ```bash
+    git checkout -b feature-branch
+    ```
+3. Make your changes and commit them:
+    ```bash
+    git commit -m "Description of changes"
+    ```
+4. Push to the branch:
+    ```bash
+    git push origin feature-branch
+    ```
+5. Create a pull request.
 
- **Required Fields:**
-
-- `username` (string) – User's unique username
-- `email` (string) – User's email address
-- `password` (string) – Secure password
-
- **Response Example:**
-
-```json
-{
-  "message": "User registered successfully"
-}
-```
-
----
-
-#### User Login
-
-**Method:** `POST`\
-**Endpoint:** `/api/auth/login`\
-**Description:** Authenticates a user and returns a token.
-
- **Required Fields:**
-
-- `email` (string) – User's registered email
-- `password` (string) – User's password
-
- **Response Example:**
-
-```json
-{
-  "token": "your_jwt_token"
-}
-```
-
----
-
+## License
+This project is licensed under the MIT License.
