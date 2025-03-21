@@ -3,6 +3,8 @@ import bookController from '../controllers/bookController.js'
 import protectedRoute from '../middlewares/auth.js'
 
 const router = express.Router()
+
+
 /**
  * @swagger
  * /api/books:
@@ -35,7 +37,24 @@ const router = express.Router()
  *                 books:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Book'
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       title:
+ *                         type: string
+ *                       caption:
+ *                         type: string
+ *                       rating:
+ *                         type: number
+ *                       image:
+ *                         type: string
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date-time
  *                 page:
  *                   type: integer
  *                 limit:
@@ -63,17 +82,13 @@ router.get('/', protectedRoute, bookController.showBooks)
  *             type: object
  *             properties:
  *               title:
- *                 type: string
- *                 example: "Application Security"
+ *                 type: string 
  *               caption:
  *                 type: string
- *                 example: "Owasp Top 10"
  *               image:
  *                 type: string
- *                 example: "https://api.dicebear.com/7.x/avataaars/svg?seed=owasp"
  *               rating:
  *                 type: number
- *                 example: 2
  *     responses:
  *       201:
  *         description: Book created successfully
@@ -81,6 +96,7 @@ router.get('/', protectedRoute, bookController.showBooks)
  *         description: Bad request
  */
 router.post('/', protectedRoute, bookController.newBook)
+
 /**
  * @swagger
  * /api/books/{id}:
@@ -121,7 +137,6 @@ router.post('/', protectedRoute, bookController.newBook)
  */
 router.put('/:id', protectedRoute, bookController.updateBook)
 
-
 /**
  * @swagger
  * /api/books/{id}:
@@ -146,7 +161,5 @@ router.put('/:id', protectedRoute, bookController.updateBook)
  *         description: Unauthorized
  */
 router.delete('/:id', protectedRoute, bookController.deleteBook)
-
-
 
 export default router
