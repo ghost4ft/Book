@@ -7,10 +7,18 @@ const sign = (payload) => {
     });
 }
 const verify = (token) => {
-    return jwt.verify(token, process.env.JWT_SECRET);
+    try {
+        return jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return false
+    }
 }
 const decode = (token) => {
-    return jwt.decode(token);
+    try {
+        return jwt.decode(token)
+    } catch (error) {
+        return false
+    }
 }
 
 export default {

@@ -1,14 +1,12 @@
 import express from 'express'
+import bookController from '../controllers/bookController.js'
+import protectedRoute from '../middlewares/auth.js'
+
 const router = express.Router()
-
-// Register route
-router.post('/register', (req, res) => {
-    // Registration logic here
-})
-
-// Login route
-router.post('/login', (req, res) => {
-    // Login logic here
-})
+router.post('/', protectedRoute,bookController.newBook)
+router.get('/', protectedRoute,bookController.showBooks)
+router.delete('/:id', protectedRoute,bookController.deleteBook)
+router.put('/:id', protectedRoute,bookController.updateBook)
+router.put('/user', protectedRoute,bookController.userBook)
 
 export default router
